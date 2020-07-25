@@ -8,6 +8,7 @@ dotenv.config({ path: __dirname + "/config/blog.env" });
 if (!global.connections) global.connections = {};
 
 const connectDB = require("./config/db");
+console.log(connectDB);
 connectDB().then(() => {
     app.use("/api/v1/posts", require("./routes/posts"));
 })

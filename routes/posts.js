@@ -9,6 +9,13 @@ router.get("/", async (req, res) => {
     res.json({ success: true, data: posts }); //res.json ~= res.send
 });
 
+router.get("/:title", async (req, res) => {
+    var title = req.params.title;
+    const posts = await Post.find({ title: title }).sort({ createdAt: -1 });
+
+    res.json({ success: true, data: posts }); //res.json ~= res.send
+});
+
 router.post("/", async (req, res) => {
     try {
         var data = req.body;

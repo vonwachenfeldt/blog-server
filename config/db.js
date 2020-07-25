@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const connectDB = async () => {
-    console.log("yefgts");
     const conn = await mongoose.createConnection(process.env.BLOGMONGOURI, {
         useNewUrlParser: true,
         useFindAndModify: false,
@@ -9,7 +8,7 @@ const connectDB = async () => {
         useUnifiedTopology: true
     })
 
-global.connections.blogServer = conn;
+    global.connections.blogServer = conn;
 
     console.log("BLOG connected");
 }

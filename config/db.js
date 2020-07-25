@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const connectDB = async () => {
+    console.log("yefgts");
     const conn = await mongoose.createConnection(process.env.BLOGMONGOURI, {
         useNewUrlParser: true,
         useFindAndModify: false,

@@ -13,7 +13,7 @@ router.get("/:title", async (req, res) => {
     var title = req.params.title;
     const posts = await Post.find({ title: title }).sort({ createdAt: -1 });
 
-    res.json({ success: true, data: posts }); //res.json ~= res.send
+    res.json({ success: true, data: posts })
 });
 
 router.post("/", async (req, res) => {

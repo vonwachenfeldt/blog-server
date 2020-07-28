@@ -1,5 +1,5 @@
 const Post = require("../modules/Post");
-
+const Pass = require("../../pass");
 const express = require("express");
 const router = express.Router();
 
@@ -23,6 +23,11 @@ router.post("/", async (req, res) => {
         var titleFormatted = capitalize(data.title);
         var contentFormatted = data.content;
         var tagFormatted = capitalize(data.tag);
+        var pass = data.pass;
+
+        if(pass !== Pass.getPass()){
+            return;
+        }
 
         titleFormatted = titleFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         contentFormatted = contentFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');

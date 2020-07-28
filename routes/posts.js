@@ -23,15 +23,6 @@ router.post("/", async (req, res) => {
         var titleFormatted = capitalize(data.title);
         var contentFormatted = data.content;
         var tagFormatted = capitalize(data.tag);
-        var pass = data.pass;
-
-        if(pass !== "test") {
-            res.json({
-                success: false,
-                error: "invalid password"
-            })
-            return;
-        }
 
         titleFormatted = titleFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         contentFormatted = contentFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');

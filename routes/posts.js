@@ -1,5 +1,5 @@
 const Post = require("../modules/Post");
-const Pass = require("../../pass");
+const Pass = require("../pass.js");
 const express = require("express");
 const router = express.Router();
 

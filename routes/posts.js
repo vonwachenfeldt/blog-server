@@ -25,7 +25,11 @@ router.post("/", async (req, res) => {
         var tagFormatted = capitalize(data.tag);
         var pass = data.pass;
 
-        if(pass !== Pass.getPass()){
+        if(pass !== getPass()){
+            res.json({
+                success: false,
+                error: "invalid password"
+            })
             return;
         }
 

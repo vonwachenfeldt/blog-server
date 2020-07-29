@@ -11,7 +11,6 @@ router.get("/", async (req, res) => {
 router.get("/:title", async (req, res) => {
     var title = req.params.title;
     const posts = await Post.find({ title: title }).sort({ createdAt: -1 });
-
     res.json({ success: true, data: posts })
 });
 
@@ -19,7 +18,7 @@ router.post("/", async (req, res) => {
     try {
         var data = req.body;
 
-        var titleFormatted = encodeURIComponent(capitalize(data.title));
+        var titleFormatted = capitalize(data.title);
         var contentFormatted = data.content;
         var tagFormatted = capitalize(data.tag);
 

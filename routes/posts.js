@@ -10,7 +10,6 @@ router.get("/", async (req, res) => {
 
 router.get("/:title", async (req, res) => {
     var title = req.params.title;
-    title = decodeURIComponent(title);
     const posts = await Post.find({ title: title }).sort({ createdAt: -1 });
 
     res.json({ success: true, data: posts })

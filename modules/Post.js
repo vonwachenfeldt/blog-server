@@ -18,6 +18,10 @@ const PostSchema = mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now,
+    },
+    pass: {
+        type: String,
+        required: true
     }
 })
 

@@ -33,7 +33,8 @@ router.post("/", async (req, res) => {
 
             title: titleFormatted,
             content: contentFormatted,
-            tag: tagFormatted
+            tag: tagFormatted,
+            image: imageFormatted
         })
 
         console.log("Post added", titleFormatted);

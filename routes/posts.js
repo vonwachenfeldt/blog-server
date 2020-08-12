@@ -23,18 +23,21 @@ router.post("/", async (req, res) => {
         var contentFormatted = data.content;
         var tagFormatted = capitalize(data.tag);
         var imageFormatted = data.image;
+        var previewFormatted = data.preview;
 
         titleFormatted = titleFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         contentFormatted = contentFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         tagFormatted = tagFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         imageFormatted = imageFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        previewFormatted = previewFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
         const post = await Post.create({
 
             title: titleFormatted,
             content: contentFormatted,
             tag: tagFormatted,
-            image: imageFormatted
+            image: imageFormatted,
+            preview: previewFormatted
         })
 
         console.log("Post added", titleFormatted);

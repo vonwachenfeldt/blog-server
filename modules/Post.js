@@ -15,14 +15,14 @@ const PostSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    image: {
+        type: String,
+        required: true
+    },
     createdAt: {
         type: Date,
         default: Date.now,
     },
-    pass: {
-        type: String,
-        required: true
-    }
 })
 
 module.exports = connections.blogServer.model("Post", PostSchema);

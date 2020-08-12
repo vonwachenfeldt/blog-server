@@ -22,19 +22,12 @@ router.post("/", async (req, res) => {
         var titleFormatted = capitalize(data.title);
         var contentFormatted = data.content;
         var tagFormatted = capitalize(data.tag);
-        var pass = data.pass;
+        var imageFormatted = data.image;
 
         titleFormatted = titleFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         contentFormatted = contentFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         tagFormatted = tagFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-
-        if(pass !== process.env.PASSWORD) {
-            res.json({
-                success: false,
-                error: "Wrong password"
-            })
-            return;
-        }
+        imageFormatted = tagFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
         const post = await Post.create({
 

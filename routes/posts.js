@@ -16,6 +16,13 @@ router.get("/:title", async (req, res) => {
     res.json({ success: true, data: posts })
 });
 
+router.get("/:tag", async (req, res) => {
+    var tag = req.params.tag;
+    const posts = await Post.find({ tag: tag }).sort({ createdAt: -1 });
+
+    res.json({ success: true, data: posts })
+});
+
 router.post("/", async (req, res) => {
     try {
         var data = req.body;

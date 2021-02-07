@@ -1,5 +1,4 @@
 const Post = require("../modules/Post");
-const Pass = require("../../pass");
 const express = require("express");
 const router = express.Router();
 
@@ -11,8 +10,15 @@ router.get("/", async (req, res) => {
 
 router.get("/:title", async (req, res) => {
     var title = req.params.title;
+    title = decodeURIComponent(title);
     const posts = await Post.find({ title: title }).sort({ createdAt: -1 });
+    res.json({ success: true, data: posts })
+});
 
+router.get("/tag/:tag", async (req, res) => {
+    var tag = req.params.tag;
+    tag = decodeURIComponent(tag);
+    const posts = await Post.find({ tag: tag }).sort({ createdAt: -1 });
     res.json({ success: true, data: posts })
 });
 
@@ -30,21 +36,22 @@ router.post("/", async (req, res) => {
         var titleFormatted = capitalize(data.title);
         var contentFormatted = data.content;
         var tagFormatted = capitalize(data.tag);
-        var pass = data.pass;
-
-        if(pass !== Pass.getPass()){
-            return;
-        }
+        var imageFormatted = data.image;
+        var previewFormatted = data.preview;
 
         titleFormatted = titleFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         contentFormatted = contentFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         tagFormatted = tagFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        imageFormatted = imageFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        previewFormatted = previewFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
         const post = await Post.create({
 
             title: titleFormatted,
             content: contentFormatted,
-            tag: tagFormatted
+            tag: tagFormatted,
+            image: imageFormatted,
+            preview: previewFormatted
         })
 
         console.log("Post added", titleFormatted);
